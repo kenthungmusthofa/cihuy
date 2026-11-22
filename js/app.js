@@ -7,13 +7,14 @@
   const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   const safe = (v, fallback = '') => typeof v === 'string' && v.trim() ? v.trim() : fallback;
 
-  // 1. PERSONALIZED COPY (safe textContent, no HTML injection).
   const romanticAddress = safe(cfg.romanticAddress, 'Sayang');
   const me = safe(cfg.senderName, 'Aku');
   $('#birthdayName').textContent = romanticAddress + '.';
   $('#birthdayNameInline').textContent = 'kamu';
-  $('#polaroidMe').textContent = me.toLowerCase() + ', di sini ♡';
-  $('#polaroidHer').textContent = romanticAddress.toLowerCase() + ', di sana ♡';
+  $('#polaroidMe').textContent =
+  safe(cfg.polaroidMeCaption, me.toLowerCase() + ', di sini ♡');
+  $('#polaroidHer').textContent =
+  safe(cfg.polaroidHerCaption, romanticAddress.toLowerCase() + ', di sana ♡');
   $('#signatureName').textContent = me + '.';
   $('#giftBoxLetter').textContent = 'Untuk ' + romanticAddress.toLowerCase() + ' ♡';
   $('#finalTitle').textContent = safe(cfg.finalTitle, 'Untuk kamu, yang istimewa.');
@@ -25,7 +26,6 @@
   if (safe(cfg.relationshipDate)) $('#relationshipDate').textContent = cfg.relationshipDate;
   document.title = `Untuk ${romanticAddress.toLowerCase()} ♡ | Sugeng Ambalwarsa`;
 
-  // Photos fall back to intentionally illustrated cards, not counterfeit couple portraits.
   function setupPhoto(selector, src) {
     const img = $(selector);
     if (!img) return;
@@ -43,7 +43,7 @@
   setupPhoto('#photoMe', cfg.photoMe);
   setupPhoto('#photoHer', cfg.photoHer);
 
-  // Deterministic, tiny star dots: handcrafted decoration, no external dependencies.
+
   function populateStars(selector, count, seed) {
     const parent = $(selector);
     if (!parent) return;
