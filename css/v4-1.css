@@ -1,0 +1,122 @@
+/* V4.1 — precise physics, no competing animations; optimized for mobile. */
+:root { --physical-ease: cubic-bezier(.23,.74,.24,1); }
+html {scroll-behavior:auto;}
+/* Envelope surfaces and controls shared by idle and animated states. */
+.gate .envelope--v3 { transform-style:preserve-3d; perspective:980px; backface-visibility:hidden; }
+.gate .envelope--v3 .envelope__seal { transition:transform .54s var(--v4-spring), opacity .5s ease,filter .5s ease; }
+.gate .envelope--v3 .envelope__flap { transform-origin:50% 0; transform:rotateX(0deg); transition:transform 1.22s cubic-bezier(.4,.05,.17,1),filter 1.12s ease; backface-visibility:hidden!important; -webkit-backface-visibility:hidden!important; }
+.gate .envelope--v3 .envelope__letter { transition:transform 1.46s cubic-bezier(.23,.76,.18,1),box-shadow 1.5s ease; will-change:auto; }
+.gate .envelope--v3 .envelope__paper-fold { position:absolute;left:0;right:0;top:0;height:42%;z-index:3;background:linear-gradient(160deg,#fcf6eb,#f0e5d4);border-bottom:1px solid #ddccb0;box-shadow:0 4px 5px #6b55361c;transform-origin:50% 0;transform:rotateX(0deg);backface-visibility:hidden;pointer-events:none;transition:transform .78s cubic-bezier(.28,.75,.24,1),opacity .75s; }
+.gate .gate__action { transition:opacity .7s,transform .7s,background .3s; }
+.gate .gate__sequence { min-height:22px; opacity:1; transition:opacity .42s ease,color .5s ease; }
+.gate__progress { position:relative;width:185px;height:2px;margin:0 auto 3px;background:#dfd0b326;overflow:hidden;border-radius:4px;opacity:0;transition:opacity .35s; }
+.gate__progress>span { display:block;height:100%;width:100%;background:linear-gradient(90deg,#9e825c,#ebd3a4);transform:scaleX(0);transform-origin:0 50%; }
+.gate__skip { position:absolute;right:max(18px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));padding:9px 12px;border:1px solid #e4cfa255;background:#1c2c3dba;color:#f2ddbb;font:500 11px var(--sans);letter-spacing:.03em;border-radius:100px;cursor:pointer;transition:background .25s;z-index:11; }
+.gate__skip:not([hidden]):hover { background:#34495d; }
+
+/* Gate is rendered on top of the page; its exit is a single long crossfade. */
+.gate{transition:opacity .59s cubic-bezier(.2,.7,.2,1),visibility .59s linear;}
+.gate.is-cinematic-exiting{opacity:0;pointer-events:none;}
+.gate.is-cinematic-playing .envelope--v3,
+.gate.is-mechanism-finished .envelope--v3{animation:none!important;transform:rotate(-2deg);transition:none!important;}
+.gate.is-cinematic-playing .envelope--v3:hover{transform:rotate(-2deg)!important;}
+.gate.is-cinematic-playing .envelope--v3 .envelope__flap,
+.gate.is-cinematic-playing .envelope--v3 .envelope__letter,
+.gate.is-cinematic-playing .envelope--v3 .envelope__seal,
+.gate.is-cinematic-playing .envelope--v3 .envelope__paper-fold,
+.gate.is-mechanism-finished .envelope--v3 *{transition:none!important;animation:none!important;}
+/* 3D flap must fold AWAY rather than form the roof seen in the earlier version. */
+.gate.is-mechanism-finished .envelope--v3 .envelope__seal,
+.gate.is-seal-gone .envelope--v3 .envelope__seal{transform:translateY(-22px) rotate(-29deg) scale(.12)!important;opacity:0!important;}
+.gate.is-mechanism-finished .envelope--v3 .envelope__flap,
+.gate.is-flap-open .envelope--v3 .envelope__flap{transform:rotateX(-179deg)!important;}
+.gate.is-paper-up .envelope--v3 .envelope__letter{transform:translate3d(0,-118px,0) rotate(-.8deg)!important;}
+.gate.is-paper-open .envelope--v3 .envelope__letter{transform:translate3d(0,-123px,0) rotate(-.3deg) scale(1.035)!important;}
+.gate.is-mechanism-finished .envelope--v3 .envelope__paper-fold,
+.gate.is-paper-open .envelope--v3 .envelope__paper-fold{transform:rotateX(-178deg)!important;opacity:0!important;}
+/* A restrained reading light on the paper, not an abrupt full-screen flash. */
+.gate.is-paper-open .envelope__letter,
+.gate.is-paper-presented .envelope__letter{box-shadow:0 9px 44px #dfbf8740,0 0 24px #fff4d04d;}
+.gate__sequence{transition:color .4s ease;}
+.gate.is-cinematic-playing .gate__progress{opacity:1;}
+.gate.is-cinematic-playing .gate__progress>span{animation:v41GateProgress 4.18s linear both!important;}
+@keyframes v41GateProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+/* Gift scene: WAAPI animates the independent bow, ribbon, lid, paper and light. */
+.gift-stage.is-cinematic-playing .gift-box{animation:none!important;transition:none!important;transform:rotate(-3deg);}
+.gift-stage.is-cinematic-finished .gift-box{animation:none!important;transition:none!important;transform:rotate(-3deg)!important;}
+.gift-stage.is-cinematic-playing .gift-box:hover{transform:rotate(-3deg);}
+.gift-stage.is-cinematic-playing .gift-box__bow,
+.gift-stage.is-cinematic-playing .gift-box__center,
+.gift-stage.is-cinematic-playing .gift-box__ribbon-v,
+.gift-stage.is-cinematic-playing .gift-box__ribbon-h,
+.gift-stage.is-cinematic-playing .gift-box__ribbon-tail,
+.gift-stage.is-cinematic-playing .gift-box__lid,
+.gift-stage.is-cinematic-playing .gift-box__light,
+.gift-stage.is-cinematic-playing .gift-box__letter,
+.gift-stage.is-cinematic-finished .gift-box *{transition:none!important;animation:none!important;}
+.gift-stage.is-cinematic-finished .gift-box__bow--left{transform:translate(-88px,125px) rotate(-104deg) scale(.63)!important;opacity:0!important;}
+.gift-stage.is-cinematic-finished .gift-box__bow--right{transform:translate(96px,132px) rotate(125deg) scaleX(-.63)!important;opacity:0!important;}
+.gift-stage.is-cinematic-finished .gift-box__ribbon-tail--left{transform:translate(-66px,133px) rotate(76deg)!important;opacity:0!important;}
+.gift-stage.is-cinematic-finished .gift-box__ribbon-tail--right{transform:translate(69px,133px) rotate(-76deg)!important;opacity:0!important;}
+.gift-stage.is-cinematic-finished .gift-box__ribbon-v{transform:translate(29px,132px) rotate(26deg)!important;opacity:0!important;}
+.gift-stage.is-cinematic-finished .gift-box__ribbon-h{transform:translate(37px,93px) rotate(-9deg)!important;opacity:0!important;}
+.gift-stage.is-cinematic-finished .gift-box__center{transform:scale(.3)!important;opacity:0!important;}
+.gift-stage.is-cinematic-finished .gift-box__lid{transform:translate3d(-16px,-77px,0) rotate(-12deg)!important;opacity:1!important;}
+.gift-stage.is-cinematic-finished .gift-box__light{transform:translateY(-10px) scale(1.2)!important;opacity:.8!important;}
+.gift-stage.is-cinematic-finished .gift-box__letter{transform:translateY(-55px) scale(1.01) rotate(-2deg)!important;opacity:1!important;}
+.gift-stage.is-cinematic-playing .gift-stage__progress{opacity:1;}
+.gift-stage.is-cinematic-playing .gift-stage__progress>span{animation:v41GiftProgress 5.47s linear both!important;}
+@keyframes v41GiftProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+/* Less blur and shorter travel: no more lurching text and delayed reveals. */
+.reveal{filter:none!important;transform:translate3d(0,19px,0);opacity:0;transition:opacity .84s cubic-bezier(.2,.74,.26,1),transform .84s cubic-bezier(.2,.74,.26,1)!important;will-change:auto;}
+.reveal.is-visible{opacity:1;transform:translate3d(0,0,0);}
+.letter-card.is-visible{transition:transform .6s cubic-bezier(.2,.74,.26,1),box-shadow .45s ease,opacity .8s ease!important;}
+.hero__art.reveal.is-visible{transform:translate3d(calc(var(--pointer-x,0px) * .75),calc(var(--pointer-y,0px) * .75),0) rotate(3deg);}
+/* Never hide buttons accidentally behind a moving effect. */
+.gate.is-cinematic-playing .gate__action{pointer-events:none;}
+.replay-curtain[hidden]{display:none!important;}
+.replay-curtain{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;background:#1c2a3b;color:#ead4b2;opacity:0;transition:opacity .55s ease;pointer-events:all;}
+.replay-curtain.is-on{opacity:1;}
+.replay-curtain>span{font-size:48px;animation:v41ReplayPulse 2s ease-in-out infinite alternate;}
+.replay-curtain>p{font:italic 19px/1.7 var(--serif);margin:0;text-align:center;padding:0 20px;}
+@keyframes v41ReplayPulse{from{opacity:.5;transform:scale(.9)}to{opacity:1;transform:scale(1.08)}}
+@media(max-width:600px){
+  .reveal{transform:translate3d(0,12px,0);transition-duration:.68s!important;}
+  .gate__shooting-star,.hero__shooting-star{display:none;}
+  .star-dot:nth-child(3n){animation:none;opacity:.5;}
+  .gift-stage__halo{filter:none!important;}
+  .gift-stage{contain:layout style;}
+}
+@media(prefers-reduced-motion:reduce){
+  .replay-curtain>span{animation:none;}
+  .gate__progress>span,.gift-stage__progress>span{animation:none!important;transform:scaleX(1)!important;}
+  .reveal{transition-duration:.01ms!important;opacity:1;transform:none;}
+}
+
+/* Final letter always wins over intermediate states accumulated during the sequence. */
+.gate.is-paper-presented .envelope--v3 .envelope__letter,
+.gate.is-mechanism-finished .envelope--v3 .envelope__letter{transform:translate3d(0,-129px,0) rotate(0) scale(1.075)!important;}
+
+/* Dedicated 300px envelope stage: the rising sheet never covers the heading. */
+.gate__envelope-stage{display:flex;align-items:flex-end;justify-content:center;width:100%;height:300px;flex:0 0 300px;position:relative;}
+.gate .envelope--v3{margin:0 0 18px;flex:0 0 auto;}
+@media(max-width:600px){
+ .gate__content{padding:16px 0 12px;}
+ .gate__ornament{margin:12px 0 11px;}
+ .gate__subtitle{margin:10px auto 8px;}
+ .gate__hint{margin:10px 0 0;}
+ .gate__envelope-stage{height:280px;flex-basis:280px;}
+ .gate .envelope--v3{margin:0 0 16px;}
+}
+@media(max-width:360px), (max-height:730px){
+ .gate__content{padding:10px 0;}
+ .gate__envelope-stage{height:257px;flex-basis:257px;}
+ .gate__title{font-size:clamp(38px,10vw,51px);}
+ .gate__subtitle{line-height:1.6;max-width:290px;margin:7px auto 5px;}
+ .gate__ornament{margin:8px 0 9px;}
+ .gate__hint{margin:7px 0 0;}
+ .gate__action{min-height:44px;}
+}
+
+.gate.is-cinematic-playing .gate__action{opacity:.55;}
+@media(max-width:600px){.gate__skip{top:max(15px,env(safe-area-inset-top));bottom:auto;right:12px;}}
