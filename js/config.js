@@ -6,12 +6,12 @@
 window.GIFT_CONFIG = {
   recipientName: "Ni'mah",
   recipientArabicName: 'نعمة بدرية الصالحة',
-  romanticAddress: 'Sayang',
+  romanticAddress: 'Nimas',
   senderName: 'Kangmas',
   firstTalkDate: '',
   relationshipDate: '',
-  firstTalkText: 'Dari yang awalnya cuma pertemuan yang bisa. dan aku aja ndak tahu dari situ aku bakal pengen ma kamu setiap hari.',
-  relationshipText: 'Ndak semua hari gampang. Tapi aku milih belajar ngertiin kamu pelan-pelan, dan aku juga masih mau terus belajar.',
+  firstTalkText: 'Dari yang awalnya cuma pertemuan yang tak terduga. dan aku aja ndak tahu dari situ aku bakal pengen ma kamu setiap hari awokawok.',
+  relationshipText: 'Ndak semua hari gampang. Tapi aku milih belajar ngertiin kamu pelan-pelan, dan aku juga masih terus belajar.',
   photoMe: 'assets/photos/aku.jpg',
   photoHer: 'assets/photos/dia.jpg',
   musicFile: 'assets/audio/musik.mp3', // opsional; jika kosong / tidak ada, musik instrumental buatan browser tersedia
