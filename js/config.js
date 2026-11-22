@@ -1,13 +1,12 @@
-/**
- * PERSONALISASI HADIAH
- * Cukup ubah tulisan di antara tanda kutip. Jangan hapus tanda koma.
- * Jika belum memiliki foto / audio, biarkan path-nya. Website tetap berfungsi.
- */
 window.GIFT_CONFIG = {
   recipientName: "Ni'mah",
   recipientArabicName: 'نعمة بدرية الصالحة',
   romanticAddress: 'Nimas',
   senderName: 'Kangmas',
+
+  polaroidMeCaption: 'orang yang jadi korban ♡',
+  polaroidHerCaption: 'sosok asli pelaku nesunan ♡',
+
   firstTalkDate: '',
   relationshipDate: '',
   firstTalkText: 'Dari yang awalnya cuma pertemuan yang tak terduga. dan aku aja ndak tahu dari situ aku bakal pengen ma kamu setiap hari awokawok.',
