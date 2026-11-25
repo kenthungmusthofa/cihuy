@@ -14,7 +14,7 @@ window.GIFT_CONFIG = {
   photoMe: 'assets/photos/aku.jpg',
   photoHer: 'assets/photos/dia.jpg',
   musicFile: 'assets/audio/musik.mp3', // opsional; jika kosong / tidak ada, musik instrumental buatan browser tersedia
-  voiceFile: 'assets/audio/pesan-suara.mp3', // opsional; fitur suara otomatis disembunyikan bila file belum ada
+  voiceFile: '', // opsional; fitur suara otomatis disembunyikan bila file belum ada
   letters: {
     miss: {
       title: 'Saat Kamu kangen',

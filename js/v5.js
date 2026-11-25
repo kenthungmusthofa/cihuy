@@ -94,7 +94,7 @@
     const heading = el.querySelector('h2');
     heading.tabIndex = -1;
     heading.focus({preventScroll:true});
-    el.scrollIntoView({behavior:reduce?'instant':'smooth',block:'start'});
+    window.chapterScroll.toElement(el);
   }
   $$('[data-jump-key]').forEach(button=>button.addEventListener('click',()=>{
     const id=button.dataset.jumpKey;

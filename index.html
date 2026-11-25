@@ -17,6 +17,11 @@
   <link rel="stylesheet" href="css/v4-1.css">
   <link rel="stylesheet" href="css/v5.css">
   <link rel="stylesheet" href="css/candlelight.css">
+  <link rel="stylesheet" href="css/lenis.css">
+  <script src="js/vendor/gsap.min.js" defer></script>
+  <script src="js/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="js/vendor/lenis.min.js" defer></script>
+  <script src="js/chapter-scroll.js" defer></script>
   <script src="js/config.js" defer></script>
   <script src="js/app.js" defer></script>
   <script src="js/v3.js" defer></script>
@@ -77,7 +82,7 @@
   <header class="site-header" id="siteHeader">
     <a href="#home" class="brand" aria-label="Kembali ke awal"><span class="brand__mark">2<span>✦</span>6</span><span class="brand__label">SUGENG AMBALWARSA</span></a>
     <button class="chapter-menu" id="chapterMenu" aria-controls="chapterNav" aria-expanded="false" aria-label="Menu bab">☰</button>
-    <nav class="main-nav" id="chapterNav" aria-label="Navigasi utama">
+    <nav class="main-nav" id="chapterNav" data-lenis-prevent aria-label="Navigasi utama">
       <a href="#birthday">Ucapan</a><a href="#story">Cerita</a><a href="#sky">Langit</a><a href="#letters">Surat</a><a href="#prayer">Doa</a><a href="#future">Harapan</a><a href="#vault" class="mobile-chapter-link">Tiga kunci</a><a href="#gift">Kado</a>
     </nav>
     <button class="sound-toggle" id="musicToggle" aria-pressed="false" aria-label="Nyalakan musik latar" title="Nyalakan/matikan musik">
@@ -88,7 +93,7 @@
       <button class="key-hud__toggle" id="keyHudToggle" type="button" aria-expanded="false" aria-controls="keyHudPanel" aria-describedby="keyHudCount" aria-label="Lihat progres tiga kunci">
         <span class="key-hud__icon" aria-hidden="true">⚿</span><span class="key-hud__count" id="keyHudCount">0/3</span>
       </button>
-      <div class="key-hud__panel" id="keyHudPanel" hidden>
+      <div class="key-hud__panel" id="keyHudPanel" data-lenis-prevent hidden>
         <div class="key-hud__heading"><strong>Three Keys of Love</strong><button id="keyHudClose" type="button" aria-label="Tutup panel kunci">×</button></div>
         <p>Kumpulkan tiga kunci kecil yang tersimpan dalam cerita ini.</p>
         <div class="key-hud__items">
@@ -372,10 +377,10 @@
   <footer class="site-footer"><span>SUGENG AMBALWARSA <span aria-hidden="true">✦</span> SEBUAH HADIAH KECIL</span><span>Dibuat dengan perasaan, meskipun dari kejauhan.</span></footer>
 
   <!-- LETTER MODAL -->
-  <dialog class="letter-dialog" id="letterDialog" aria-labelledby="dialogTitle"><button class="dialog-close" id="dialogClose" aria-label="Tutup surat">✕</button><div class="letter-dialog__paper"><span class="letter-dialog__kicker" id="dialogKicker">SURAT KECIL NO. 01</span><span class="letter-dialog__stamp" aria-hidden="true">✦</span><h2 id="dialogTitle">Untukmu...</h2><div class="letter-dialog__content" id="dialogContent"></div><div class="letter-dialog__foot">dari seseorang yang jauh, tapi mendoakanmu. <span>♡</span></div></div></dialog>
+  <dialog class="letter-dialog" id="letterDialog" data-lenis-prevent aria-labelledby="dialogTitle"><button class="dialog-close" id="dialogClose" aria-label="Tutup surat">✕</button><div class="letter-dialog__paper"><span class="letter-dialog__kicker" id="dialogKicker">SURAT KECIL NO. 01</span><span class="letter-dialog__stamp" aria-hidden="true">✦</span><h2 id="dialogTitle">Untukmu...</h2><div class="letter-dialog__content" id="dialogContent"></div><div class="letter-dialog__foot">dari seseorang yang jauh, tapi mendoakanmu. <span>♡</span></div></div></dialog>
 
   <!-- SECRET STAR MODAL -->
-  <dialog class="secret-dialog" id="secretDialog" aria-labelledby="secretTitle"><button class="dialog-close" id="secretClose" aria-label="Tutup rahasia">✕</button><span class="secret-dialog__star">✧</span><span class="eyebrow">A LITTLE SECRET</span><h2 id="secretTitle">Ketemu juga,<br><em>rahasia kecil ini.</em></h2><p id="secretText">Ada satu hal yang ingin kubisikkan: sejauh apa pun jarak kita, semoga Allah menjaga hal-hal baik di antara kita.</p><button class="button button--gold" id="secretDone">Simpan di hati ♡</button></dialog>
+  <dialog class="secret-dialog" id="secretDialog" data-lenis-prevent aria-labelledby="secretTitle"><button class="dialog-close" id="secretClose" aria-label="Tutup rahasia">✕</button><span class="secret-dialog__star">✧</span><span class="eyebrow">A LITTLE SECRET</span><h2 id="secretTitle">Ketemu juga,<br><em>rahasia kecil ini.</em></h2><p id="secretText">Ada satu hal yang ingin kubisikkan: sejauh apa pun jarak kita, semoga Allah menjaga hal-hal baik di antara kita.</p><button class="button button--gold" id="secretDone">Simpan di hati ♡</button></dialog>
 
 
 

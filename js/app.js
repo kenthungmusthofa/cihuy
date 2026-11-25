@@ -251,7 +251,7 @@
       target.tabIndex = -1;
       target.focus({preventScroll:true});
     }
-    scrollEasedTo(target,href==='#home'?1100:970);
+    window.chapterScroll.toElement(target,href==='#home'?1100:970);
   }));
 
   // 4. FOUR REAL LETTERS
@@ -319,33 +319,6 @@
   const giftLetter = $('.gift-box__letter');
   const giftGlow = $('.gift-box__light');
   let giftRunning=false, giftFinished=false, giftToken=0;
-  let scrollAnimation=0;
-  function cancelScroll(){scrollAnimation++;}
-  window.addEventListener('wheel',cancelScroll,{passive:true});
-  window.addEventListener('touchstart',cancelScroll,{passive:true});
-  function scrollEasedTo(element,ms=1000){
-    if(!element)return;
-    const token=++scrollAnimation;
-    const start=window.scrollY;
-    const headerHeight = $('#siteHeader').getBoundingClientRect().height;
-    // The letter may still be lifting into place when its animation is skipped.
-    // Anchor to the paper's layout position, independent of that transform.
-    const parent = element.offsetParent;
-    const top = parent
-      ? parent.getBoundingClientRect().top + parent.clientTop + element.offsetTop
-      : element.getBoundingClientRect().top;
-    const dest=Math.max(0,top+start-headerHeight-12);
-    if(reduceMotion||Math.abs(dest-start)<8){window.scrollTo({top:dest,behavior:'instant'});return;}
-    const t0=performance.now();
-    const ease=t=>1-Math.pow(1-t,4);
-    const tick=now=>{
-      if(token!==scrollAnimation)return;
-      const progress=Math.min(1,(now-t0)/ms);
-      window.scrollTo({top:start+(dest-start)*ease(progress),behavior:'instant'});
-      if(progress<1)requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  }
   function finishGift(skipped=false){
     if(giftFinished)return;
     giftFinished=true;giftRunning=false;giftToken++;
@@ -362,7 +335,7 @@
   function readFinalLetter(duration) {
     $('#finalTitle').tabIndex = -1;
     $('#finalTitle').focus({preventScroll:true});
-    scrollEasedTo($('#giftReveal'),duration);
+    window.chapterScroll.toElement($('#giftReveal'),duration);
   }
   async function openGift(){
     if(giftFinished){readFinalLetter(750);return;}
@@ -411,7 +384,7 @@
   $('#restart').addEventListener('click',()=>{
     // Real replay, not navigation to #home. Every interactive state is reset in place.
     if ($('#replayCurtain').classList.contains('is-on')) return;
-    cancelScroll();
+    document.dispatchEvent(new CustomEvent('gift:replay-start'));
     pauseMusic();
     const voice=$('#voiceAudio'); if(voice) {voice.pause();voice.currentTime=0;}
     const curtain=$('#replayCurtain');
@@ -539,7 +512,7 @@
       const needed = firstLines + 12 - innerHeight;
       const available = sky.getBoundingClientRect().top - $('#siteHeader').offsetHeight - 8;
       const distance = Math.min(needed, available);
-      if (distance > 0) window.scrollBy({top:distance, behavior:reduceMotion ? 'instant' : 'smooth'});
+      if (distance > 0) window.chapterScroll.toY(window.scrollY + distance, 420);
     }
     wishBody.style.animation = 'none'; void wishBody.offsetWidth; wishBody.style.animation = '';
     if (litStars.size === 5) {
