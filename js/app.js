@@ -674,6 +674,12 @@
     $('#musicToggle').setAttribute('aria-pressed', String(soundOn));
     $('#musicToggle').setAttribute('aria-label', soundOn ? 'Matikan musik latar' : 'Nyalakan musik latar');
     $('#musicLabel').textContent = soundOn ? 'On' : 'Off';
+    const instrumental = soundOn && synthRequest === musicRequest;
+    const title = instrumental ? 'Instrumental' : 'Dunia Yang Nanti';
+    $('#songTitle').textContent = title;
+    $('#songArtist').textContent = instrumental ? 'Musik pengiring' : 'Raim Laode';
+    $('#songPlay').setAttribute('aria-pressed', String(soundOn));
+    $('#songPlay').setAttribute('aria-label', (soundOn ? 'Jeda ' : 'Putar ') + title);
   }
   function playMusic() {
     const request = ++musicRequest;
@@ -703,7 +709,12 @@
     if(audioFile) audioFile.pause();
     stopSynth();
   }
-  $('#musicToggle').addEventListener('click', () => musicRequested ? pauseMusic() : playMusic());
+  function toggleMusic() {
+    if (musicRequested) pauseMusic();
+    else playMusic();
+  }
+  $('#musicToggle').addEventListener('click', toggleMusic);
+  $('#songPlay').addEventListener('click', toggleMusic);
 
   // Voice note appears only when an actual voice recording exists.
   if (safe(cfg.voiceFile)) {
