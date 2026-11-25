@@ -23,7 +23,6 @@
     ? cfg.recipientArabicName : 'نعمة بدرية الصالحة';
   const vaultArabic = $('.vault__arabic');
   vaultArabic.textContent = introName.textContent;
-  $('.vault__signature').textContent = `dari ${cfg.senderName || 'aku'}, dengan doa yang baik. ♡`;
   const collected = new Set();
   let introTimers=[];
   let unlockTimer=0;
