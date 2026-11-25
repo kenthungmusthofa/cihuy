@@ -7,7 +7,6 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const intro = $('#nameIntro');
   const introName = $('#nameIntroArabic');
-  const introContinue = $('#nameIntroContinue');
   const gate = $('#gate');
   const hud = $('#keyHud');
   const toggle = $('#keyHudToggle');
@@ -38,7 +37,7 @@
     const duration=reduce?40:950;
     introLater(()=>{
       intro.hidden=true;
-      intro.classList.remove('is-playing','is-ready','is-exiting');
+      intro.classList.remove('is-playing','is-exiting');
       gate.inert=false;
       $('#envelope').focus({preventScroll:true});
     },duration);
@@ -51,21 +50,11 @@
     $('main').inert=true;
     $('#siteHeader').inert=true;
     $('#nameIntroSkip').focus({preventScroll:true});
-    introContinue.disabled = true;
     void intro.offsetWidth;
     intro.classList.add('is-playing');
-    const ready = () => {
-      introContinue.disabled = false;
-      intro.classList.add('is-ready');
-    };
-    if (reduce) ready();
-    else {
-      introLater(ready,4800);
-      introLater(endIntro,6800);
-    }
+    introLater(endIntro, reduce ? 4800 : 6800);
   }
   $('#nameIntroSkip').addEventListener('click', endIntro);
-  introContinue.addEventListener('click', endIntro);
   const memoryKey = $('#keyMemory');
   const keyObserver = 'IntersectionObserver' in window
     ? new IntersectionObserver(entries => {

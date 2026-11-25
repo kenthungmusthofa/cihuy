@@ -76,7 +76,6 @@
 }
 .name-intro__ornament { margin-top: clamp(12px, 2.2svh, 22px); }
 .name-intro__foot, .gate__subtitle { color: #e3d8d0; }
-.name-intro__continue { border-radius: 3px; background: #2a2439d9; }
 .name-intro__skip { top: max(28px, env(safe-area-inset-top)); right: max(28px, env(safe-area-inset-right)); }
 .gate { overflow-y: auto; }
 .gate__circle { opacity: .27; animation: none; }
@@ -122,6 +121,7 @@
 }
 .birthday-wish { border-color: var(--paper-edge); }
 .birthday-wish h3, .story-quote, .prayer__sub { font-style: italic; }
+.polaroid-scene__center { grid-area: 1 / 2; max-width: 15ch; }
 .polaroid { border-bottom: 3px double #d1bfa6; }
 .polaroid__image img.has-error + .polaroid__fallback {
   position: relative;
@@ -403,18 +403,22 @@ html:has(.future-layout:focus-within, .future-card.is-swapping) { overflow-ancho
   .timeline__item:last-child { padding-bottom: 0; }
   .polaroid-scene {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 42px clamp(16px, 5.5vw, 30px);
-    padding-inline: 6px;
+    gap: 22px 12px;
+    padding-inline: 0;
+    align-items: start;
   }
   .polaroid--right { grid-area: 1 / 2; }
-  .polaroid__image img { max-height: min(65vw, 55svh, 285px); }
+  .polaroid { width: min(100%, calc(35svh + 14px), 205px); }
+  .polaroid__image img { width: 100%; max-height: 62svh; }
   .polaroid-scene__center {
-    grid-column: 1 / -1;
+    grid-area: 2 / 1 / 3 / -1;
+    max-width: none;
     flex-direction: row;
     justify-content: center;
-    font-size: 12px;
+    color: #695440;
+    font-size: 14px;
   }
-  .polaroid-scene__line { width: 22px; height: 1px; background: #bca98b; }
+  .polaroid-scene__line { display: none; }
   .polaroid__caption { font-size: 12px; }
   .letters-grid { grid-template-columns: 1fr; gap: 13px; }
   .letter-card {
@@ -458,7 +462,7 @@ html:has(.future-layout:focus-within, .future-card.is-swapping) { overflow-ancho
   .name-intro__arabic { font-size: clamp(32px, 10svh, 46px); }
   .lunar-seal { margin-bottom: 8px; }
   .name-intro__caption, .name-intro__foot { margin-top: 6px; }
-  .name-intro__continue { margin-top: 8px; }
+  .name-intro__note { margin-top: 8px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .lunar-seal, .candle-scene__halo { animation: none; }
@@ -636,10 +640,10 @@ body:not(.gift-ready) .song-gift { display: none; }
   align-items: center;
   gap: clamp(8px, 2vw, 14px);
   padding: 13px;
-  border: 1px solid #dbbe97;
+  border: 1px solid #df9b65;
   border-radius: 5px;
   background: linear-gradient(120deg, #703447, #472333 76%);
-  box-shadow: inset 0 0 0 4px #542839, inset 0 0 0 5px #996373, 0 6px 18px #120c213d;
+  box-shadow: inset 0 0 0 4px #542839, inset 0 0 0 5px #b57856, 0 6px 18px #120c213d;
   color: #fff1de;
 }
 .song-gift__cover {
@@ -680,6 +684,10 @@ body:not(.gift-ready) .song-gift { display: none; }
 @media (max-width: 800px) {
   .hero__copy .hero__buttons { margin-top: 0; }
 }
+
+.gift__reading-actions { display: grid; justify-items: center; gap: .25rem; margin-top: 1rem; }
+.gift__reading-actions .restart-link { margin: 0; }
+#rereadLetter { color: var(--wine); font-weight: 600; }
 
 /* The opening and skip actions occupy the same centered slot. */
 .gate__controls {

@@ -18,8 +18,8 @@
 .name-intro__underline{width:min(210px,64vw);height:1px;background:linear-gradient(90deg,transparent,#c9ad7d,transparent);transform:scaleX(0);opacity:0;}
 .name-intro__caption{margin:26px 0 0;font:italic clamp(16px,3vw,22px)/1.65 'Playfair Display',serif;color:#f7efe2;opacity:0;transform:translateY(12px)}
 .name-intro__foot{font:400 12px/1.75 'DM Sans',sans-serif;margin:12px 0 0;color:#b9c0c6;opacity:0;transform:translateY(12px)}
-.name-intro__continue{margin-top:36px;min-height:48px;border:1px solid #bea4787a;background:#dfc9a91b;color:#e9d6b4;border-radius:50px;padding:0 24px;font:600 12px 'DM Sans',sans-serif;letter-spacing:.04em;cursor:pointer;visibility:hidden;opacity:0;transform:translateY(6px);transition:background .25s,border-color .25s,transform .8s cubic-bezier(.22,1,.36,1),opacity .8s ease-out;}
-.name-intro__continue span{margin-left:15px}.name-intro.is-ready .name-intro__continue{visibility:visible;opacity:1;transform:none}.name-intro__continue:hover{background:#dfc9a92c;border-color:#e1c08e}
+.name-intro__note{margin:24px 0 0;font:400 14px/1.5 'DM Sans',sans-serif;color:#dbc5a4;opacity:0}
+.name-intro.is-playing .name-intro__note{animation:v5Rise .8s 4.8s ease-out both}
 .name-intro__skip{position:absolute;top:calc(22px + env(safe-area-inset-top));right:calc(22px + env(safe-area-inset-right));min-height:44px;min-width:92px;border:1px solid #d4bc8b55;border-radius:100px;background:#15223480;color:#ebd9b9;font:600 11px 'DM Sans',sans-serif;padding:0 15px;cursor:pointer;z-index:2;}
 .name-intro__line{position:absolute;bottom:0;left:0;right:0;height:2px;background:#ffffff12;}
 .name-intro__line span{display:block;height:100%;background:#b99b69;transform-origin:left;transform:scaleX(0)}
@@ -38,7 +38,7 @@
 @keyframes v5Line{to{opacity:1;transform:scaleX(1)}}
 /* Extra care for narrow screens and Arabic joining. */
 @media(max-width:390px){.name-intro__arabic{font-size:clamp(24px,6.8vw,32px)}.name-intro__eyebrow{font-size:9px;letter-spacing:.15em}.name-intro__caption{font-size:16px}.name-intro__ornament{margin-top:22px}}
-@media(max-height:650px){.name-intro__ornament{margin-top:10px}.name-intro__caption{margin-top:10px}.name-intro__continue{margin-top:14px}.name-intro__arabic{line-height:1.6}}
+@media(max-height:650px){.name-intro__ornament{margin-top:10px}.name-intro__caption{margin-top:10px}.name-intro__note{margin-top:14px}.name-intro__arabic{line-height:1.6}}
 /* Keys are real buttons, not tiny invisible pixels. */
 .key-discovery{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;text-align:center;padding:26px 16px;margin:17px auto 25px;max-width:480px;position:relative;}
 .key-discovery__hint{font:italic 15px/1.65 'Playfair Display',serif;color:#8e785a;}
@@ -102,6 +102,6 @@
 .key-discovery{scroll-margin-top:90px}
 @media(max-width:720px){.chapter--vault{padding:64px 0 74px}.vault__card{border-radius:16px;padding:43px 15px 30px;margin-top:27px}.vault__reveal{padding:25px 16px}.vault__arabic{font-size:clamp(22px,6.3vw,28px)}.key-hud{right:calc(12px + env(safe-area-inset-right));bottom:calc(12px + env(safe-area-inset-bottom))}.key-hud__panel{bottom:62px}.key-hud__toggle{min-height:48px;height:48px}.key-discovery{margin:10px auto 15px;padding:21px 13px}}
 @media(max-width:360px){.vault__arabic{font-size:22px}.key-pickup{min-width:0;width:100%;max-width:280px}}
-@media(prefers-reduced-motion:reduce){.name-intro *,.key-hud__toggle,.vault__card .vault__box,.key-pickup__glow{animation:none!important}.name-intro.is-playing .name-intro__eyebrow,.name-intro.is-playing .name-intro__ornament,.name-intro.is-playing .name-intro__arabic,.name-intro.is-playing .name-intro__underline,.name-intro.is-playing .name-intro__caption,.name-intro.is-playing .name-intro__foot{opacity:1;transform:none;clip-path:none}.name-intro.is-playing .name-intro__aura{opacity:.75;transform:translate(-50%,-50%)}.name-intro.is-ready .name-intro__continue{opacity:1}.vault__reveal{animation:none}.vault__card.is-opened .vault__lid{transform:translate3d(-23px,-80px,0) rotate(-16deg)}}
+@media(prefers-reduced-motion:reduce){.name-intro *,.key-hud__toggle,.vault__card .vault__box,.key-pickup__glow{animation:none!important}.name-intro.is-playing .name-intro__eyebrow,.name-intro.is-playing .name-intro__ornament,.name-intro.is-playing .name-intro__arabic,.name-intro.is-playing .name-intro__underline,.name-intro.is-playing .name-intro__caption,.name-intro.is-playing .name-intro__foot{opacity:1;transform:none;clip-path:none}.name-intro.is-playing .name-intro__aura{opacity:.75;transform:translate(-50%,-50%)}.name-intro.is-playing .name-intro__note{opacity:1}.vault__reveal{animation:none}.vault__card.is-opened .vault__lid{transform:translate3d(-23px,-80px,0) rotate(-16deg)}}
 /* Legible celebratory calligraphy on phones, without wrapping the joined Arabic words. */
 @media(max-width:390px){.name-intro__arabic{font-size:clamp(30px,9.05vw,37px)}}

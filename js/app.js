@@ -315,6 +315,7 @@
   const giftBox = $('#giftBox');
   const giftHint = $('#giftHint');
   const skipGift = $('#skipGift');
+  const rereadLetter = $('#rereadLetter');
   const activeGiftAnims = new Set();
   const giftBows = $$('.gift-box__bow');
   const giftTails = $$('.gift-box__ribbon-tail');
@@ -335,6 +336,7 @@
     giftBox.disabled=false;
     giftBox.setAttribute('aria-label','Baca surat terakhir');
     $('#giftReveal').hidden=false;
+    rereadLetter.hidden = false;
     readFinalLetter(skipped?400:780);
   }
   function readFinalLetter(duration) {
@@ -388,6 +390,7 @@
     ]))return;
     await finishGift(false);
   }
+  rereadLetter.addEventListener('click', () => readFinalLetter(650));
   giftBox.addEventListener('click',openGift);
   skipGift.addEventListener('click',()=>finishGift(true));
   $('#restart').addEventListener('click',()=>{
@@ -416,6 +419,7 @@
       giftHint.textContent='ketuk kadonya pelan-pelan ✦';
       skipGift.hidden=true;
       $('#giftReveal').hidden=true;
+      rereadLetter.hidden = true;
       openLetters.clear();
       $$('.letter-card').forEach(card=>{
         card.classList.remove('is-opened','is-opening');
