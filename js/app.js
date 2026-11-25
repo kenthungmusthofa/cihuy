@@ -9,7 +9,6 @@
 
   const romanticAddress = safe(cfg.romanticAddress, 'Sayang');
   const me = safe(cfg.senderName, 'Aku');
-  $('#birthdayName').textContent = romanticAddress + '.';
   $('#birthdayNameInline').textContent = 'kamu';
   $('#polaroidMe').textContent =
   safe(cfg.polaroidMeCaption, me.toLowerCase() + ', di sini ♡');
