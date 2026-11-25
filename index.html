@@ -9,7 +9,7 @@
   <title>Sugeng Ambalwarsa | Sebuah Hadiah Untukmu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/upgrade.css">
   <link rel="stylesheet" href="css/v3.css">
@@ -86,7 +86,7 @@
       <a href="#birthday">Ucapan</a><a href="#story">Cerita</a><a href="#sky">Langit</a><a href="#letters">Surat</a><a href="#prayer">Doa</a><a href="#future">Harapan</a><a href="#vault" class="mobile-chapter-link">Tiga kunci</a><a href="#gift">Kado</a>
     </nav>
     <button class="sound-toggle" id="musicToggle" aria-pressed="false" aria-label="Nyalakan musik latar" title="Nyalakan/matikan musik">
-      <span class="sound-toggle__icon" aria-hidden="true">♫</span><span class="sound-toggle__label">Musik <span id="musicLabel">Off</span></span>
+      <span class="sound-toggle__icon" aria-hidden="true"></span><span class="sound-toggle__label">Musik <span id="musicLabel">Off</span></span>
     </button>
     <!-- Compact optional key journal; tap targets >= 44px on mobile -->
     <aside class="key-hud" id="keyHud" aria-label="Petualangan tiga kunci" hidden>
@@ -368,7 +368,7 @@
           <div class="gift-stage__progress" id="giftProgress" aria-hidden="true"><span></span></div>
           <button class="gift-stage__skip" id="skipGift" hidden type="button">Lewati anmasi<span aria-hidden="true">↗</span></button>
         </div>
-        <div class="gift-reveal" id="giftReveal" hidden><div class="gift-reveal__top">ONE LAST LETTER <span>✦</span></div><span class="gift-reveal__script">for you, always.</span><h3 id="finalTitle">Untuk kamu, yang istimewa.</h3><div id="finalMessage" class="gift-reveal__message"></div><p class="gift-reveal__signature">Dengan segala effort byuhhh, <em id="signatureName">aku.</em></p><div class="voice-note" id="voiceNote" hidden><span class="voice-note__icon" aria-hidden="true">♫</span><div><strong>Satu pesan suara buat kamu</strong><span>Tekan play, lalu dengarkan pelan-pelan.</span></div><button id="voiceButton" class="voice-note__button" aria-label="Putar pesan suara">▶</button><audio id="voiceAudio" preload="none"></audio></div></div>
+        <div class="gift-reveal" id="giftReveal" hidden><div class="gift-reveal__top">ONE LAST LETTER <span class="letter-postage" aria-hidden="true">26</span></div><span class="gift-reveal__script">for you, always.</span><h3 id="finalTitle">Untuk kamu, yang istimewa.</h3><div id="finalMessage" class="gift-reveal__message"></div><p class="gift-reveal__signature">Dengan segala effort byuhhh, <em id="signatureName">aku.</em></p><div class="voice-note" id="voiceNote" hidden><span class="voice-note__icon" aria-hidden="true">♫</span><div><strong>Satu pesan suara buat kamu</strong><span>Tekan play, lalu dengarkan pelan-pelan.</span></div><button id="voiceButton" class="voice-note__button" aria-label="Putar pesan suara">▶</button><audio id="voiceAudio" preload="none"></audio></div></div>
         <div class="gift__footer reveal"><div class="gift__footer-line"></div><p>Untuk setiap jarak yang masih perlu kita tempuh,<br><em>semoga selalu ada jalan yang dimudahkan.</em></p><button class="restart-link" id="restart">↺ &nbsp; Baca lagi dari awal</button></div>
       </div>
     </section>

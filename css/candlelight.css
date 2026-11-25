@@ -491,3 +491,76 @@ body:not(.gift-ready) .site-header { position: relative; background: #1b1b2c; }
   .polaroid--left { --entry-tilt: -1.5deg; }
   .polaroid-scene.is-visible .polaroid--right { animation-delay: .12s; }
 }
+
+
+/* Printed headings and readable, upright correspondence. */
+h1 em, h2 em, h3 em, .hero__headline i, .letter-card__name em,
+.future-card__title em, .site-footer em, .brand__mark, .gate__hint,
+.envelope__letter, .gate .envelope--v3 .envelope__paper-heading,
+.hero__tagline, .hero__art-stamp, .chapter__micro, .birthday-wish h3,
+.birthday-visual__script, .polaroid__caption, .polaroid-scene__center,
+.story-quote, .timeline__icon, .letters-footnote, .prayer__sub,
+.gift-stage__hint, .gift-reveal__script, .gift-reveal__signature,
+.site-footer > span:last-child, .letter-dialog__foot, .name-intro__caption,
+.key-discovery__hint, .vault__signature, .future-card__back .future-card__message,
+.gate__sequence, .candle-result, .gift-box__letter, .replay-curtain > p {
+  font-style: normal;
+}
+
+.letter-dialog__content, .gift-reveal__message {
+  font-family: var(--sans);
+  line-height: 1.75;
+  text-align: start;
+}
+.prayer__sub, .gate__hint, .gift-stage__hint, .key-discovery__hint,
+.candle-result, .polaroid__caption, .polaroid-scene__center {
+  font-family: var(--sans);
+}
+.wish-caption__complete, .future-hint {
+  /* The original component sets an important font shorthand. */
+  font-family: var(--sans) !important;
+  font-style: normal !important;
+}
+.gift-reveal__signature #signatureName {
+  display: block;
+  margin-top: .25rem;
+  color: var(--wine);
+  font: 400 clamp(1.8rem, 6vw, 2.4rem)/1.25 'Great Vibes', cursive;
+}
+
+.sound-toggle__icon {
+  display: inline-block;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #bfa176;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, #f9efdb 0 1px, #954a5d 1.5px 4px, transparent 4.5px),
+    conic-gradient(from 20deg, #282632, #655c62 18%, #24232c 34% 68%, #595258 80%, #282632);
+}
+.sound-toggle[aria-pressed='true'] .sound-toggle__icon { animation: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .sound-toggle[aria-pressed='true'] .sound-toggle__icon {
+    animation: vinyl-turn 5s linear infinite;
+  }
+}
+@keyframes vinyl-turn { to { transform: rotate(1turn); } }
+
+.gift-reveal__top .letter-postage {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.45rem;
+  height: 2.85rem;
+  margin: .2rem;
+  border: 2px dashed var(--paper);
+  outline: 1px solid var(--wine);
+  outline-offset: -1px;
+  background: var(--wine);
+  box-shadow: inset 0 0 0 3px var(--wine), inset 0 0 0 4px #d2b396;
+  color: var(--paper);
+  font: 500 1.25rem/1 var(--serif);
+  letter-spacing: 0;
+  transform: rotate(5deg);
+}
