@@ -51,13 +51,16 @@
     $('main').inert=true;
     $('#siteHeader').inert=true;
     $('#nameIntroSkip').focus({preventScroll:true});
-    introContinue.hidden=true;
+    introContinue.disabled = true;
     void intro.offsetWidth;
     intro.classList.add('is-playing');
-    const ready = () => {introContinue.hidden=false;intro.classList.add('is-ready');};
+    const ready = () => {
+      introContinue.disabled = false;
+      intro.classList.add('is-ready');
+    };
     if (reduce) ready();
     else {
-      introLater(ready,4400);
+      introLater(ready,4800);
       introLater(endIntro,6800);
     }
   }
