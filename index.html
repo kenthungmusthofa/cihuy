@@ -71,8 +71,10 @@
       </div>
       <span class="gate__sequence" id="gateSequence" aria-live="polite">ketuk amplop untuk membuka hadiahnya</span>
       <div class="gate__progress" id="gateProgress" aria-hidden="true"><span></span></div>
-      <button class="gate__skip" id="skipGate" hidden type="button">Lewati animasi <span aria-hidden="true">↗</span></button>
-      <button class="button button--gold gate__action" id="openGate">Buka suratnya <span aria-hidden="true">↗</span></button>
+      <div class="gate__controls">
+        <button class="gate__skip" id="skipGate" hidden type="button">Lewati animasi <span aria-hidden="true">↗</span></button>
+        <button class="button button--gold gate__action" id="openGate">Buka suratnya <span aria-hidden="true">↗</span></button>
+      </div>
       <p class="gate__hint">dibuat diam-diam, dengan perasaan, weisss</p>
     </div>
     <span class="gate__corner gate__corner--tl" aria-hidden="true"></span><span class="gate__corner gate__corner--br" aria-hidden="true"></span>
@@ -122,7 +124,7 @@
             <div class="song-gift__disc" aria-hidden="true"></div>
             <div class="song-gift__sleeve">
               <span class="song-gift__bow" aria-hidden="true"></span>
-              <span class="song-gift__cover" aria-hidden="true">2✦6</span>
+              <img class="song-gift__cover" src="assets/music/dunia-yang-nanti.webp" width="320" height="320" alt="">
               <span class="song-gift__track"><strong id="songTitle">Dunia Yang Nanti</strong><span id="songArtist">Raim Laode</span></span>
               <button class="song-gift__play" id="songPlay" type="button" aria-label="Putar Dunia Yang Nanti" aria-pressed="false"><span aria-hidden="true"></span></button>
             </div>
@@ -375,7 +377,7 @@
           <button class="gift-box" id="giftBox" aria-label="Buka kado terakhir"><span class="gift-box__light" aria-hidden="true"></span><span class="gift-box__body" aria-hidden="true"></span><span class="gift-box__letter" id="giftBoxLetter" aria-hidden="true">Untukmu ♡</span><span class="gift-box__lid" aria-hidden="true"></span><span class="gift-box__ribbon-h" aria-hidden="true"></span><span class="gift-box__ribbon-v" aria-hidden="true"></span><span class="gift-box__ribbon-tail gift-box__ribbon-tail--left" aria-hidden="true"></span><span class="gift-box__ribbon-tail gift-box__ribbon-tail--right" aria-hidden="true"></span><span class="gift-box__bow gift-box__bow--left" aria-hidden="true"></span><span class="gift-box__bow gift-box__bow--right" aria-hidden="true"></span><span class="gift-box__center" aria-hidden="true">✦</span></button>
           <p class="gift-stage__hint" id="giftHint" role="status" aria-live="polite">pencet kadone pelan-pelan ✦</p>
           <div class="gift-stage__progress" id="giftProgress" aria-hidden="true"><span></span></div>
-          <button class="gift-stage__skip" id="skipGift" hidden type="button">Lewati anmasi<span aria-hidden="true">↗</span></button>
+          <div class="gift-stage__controls"><button class="gift-stage__skip" id="skipGift" hidden type="button">Lewati animasi <span aria-hidden="true">↗</span></button></div>
         </div>
         <div class="gift-reveal" id="giftReveal" hidden><div class="gift-reveal__top">ONE LAST LETTER <span class="letter-postage" aria-hidden="true">26</span></div><span class="gift-reveal__script">for you, always.</span><h3 id="finalTitle">Untuk kamu, yang istimewa.</h3><div id="finalMessage" class="gift-reveal__message"></div><p class="gift-reveal__signature">Dengan segala effort byuhhh, <em id="signatureName">aku.</em></p><div class="voice-note" id="voiceNote" hidden><span class="voice-note__icon" aria-hidden="true">♫</span><div><strong>Satu pesan suara buat kamu</strong><span>Tekan play, lalu dengarkan pelan-pelan.</span></div><button id="voiceButton" class="voice-note__button" aria-label="Putar pesan suara">▶</button><audio id="voiceAudio" preload="none"></audio></div></div>
         <div class="gift__footer reveal"><div class="gift__footer-line"></div><p>Untuk setiap jarak yang masih perlu kita tempuh,<br><em>semoga selalu ada jalan yang dimudahkan.</em></p><button class="restart-link" id="restart">↺ &nbsp; Baca lagi dari awal</button></div>

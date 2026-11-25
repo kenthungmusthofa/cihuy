@@ -346,6 +346,10 @@
     skipGift.hidden=false;
     skipGift.focus({preventScroll:true});
     giftStage.classList.add('is-cinematic-playing');
+    const belowScreen = skipGift.getBoundingClientRect().bottom + 16 - innerHeight;
+    if (!reduceMotion && belowScreen > 0) {
+      window.chapterScroll.toY(scrollY + belowScreen, 320);
+    }
     const step=async (caption,animations)=>{
       if(giftFinished || token !== giftToken)return false;
       giftHint.textContent=caption;

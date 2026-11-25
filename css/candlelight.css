@@ -571,8 +571,8 @@ h1 em, h2 em, h3 em, .hero__headline i, .letter-card__name em,
   position: relative;
   isolation: isolate;
   width: min(100%, 24rem);
-  margin: 1.75rem 0 1.25rem;
-  padding-right: 1.9rem;
+  margin: 1.75rem auto 1.25rem;
+  padding-inline: clamp(12px, 4vw, 20px);
   text-align: left;
 }
 body:not(.gift-ready) .song-gift { display: none; }
@@ -590,16 +590,12 @@ body:not(.gift-ready) .song-gift { display: none; }
   color: #fff1de;
 }
 .song-gift__cover {
-  display: grid;
-  place-items: center;
+  display: block;
+  width: 100%;
+  height: auto;
   aspect-ratio: 1;
-  border: 3px solid #efdfc7;
-  outline: 1px solid #a48572;
-  color: #f7e8cc;
-  background: radial-gradient(ellipse at 72% 24%, #c9b38c 0 4%, transparent 5%),
-    linear-gradient(152deg, transparent 63%, #6e756c 64% 71%, #364742 72%),
-    linear-gradient(145deg, #454258, #252839);
-  font: 500 clamp(17px, 4vw, 23px)/1 var(--serif);
+  border: 2px solid #efdfc7;
+  object-fit: cover;
 }
 .song-gift__track { display: grid; gap: .3rem; }
 .song-gift__track strong { font: 500 clamp(17px, 4vw, 22px)/1.15 var(--serif); }
@@ -628,4 +624,42 @@ body:not(.gift-ready) .song-gift { display: none; }
 @media (prefers-reduced-motion: no-preference) {
   .song-gift:has(.song-gift__play[aria-pressed="true"]) .song-gift__disc { animation: vinyl-turn 5s linear infinite; }
 }
-@media (max-width: 800px) { .song-gift { margin-inline: auto; } }
+@media (max-width: 800px) {
+  .hero__copy .hero__buttons { margin-top: 0; }
+}
+
+/* The opening and skip actions occupy the same centered slot. */
+.gate__controls {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  margin-top: 7px;
+}
+.gate__controls > button { grid-area: 1 / 1; }
+.gate__controls .gate__action { margin: 0; }
+.gate.is-cinematic-playing .gate__action { visibility: hidden; }
+.gate__controls .gate__skip { position: static; }
+.gift-stage__controls {
+  display: grid;
+  place-items: start center;
+  min-height: 52px;
+  padding-top: 8px;
+}
+.gate__skip:not([hidden]), .gift-stage__skip:not([hidden]), .name-intro__skip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  min-height: 44px;
+  padding: 8px 16px;
+  margin: 0;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font: 600 13px/1.3 var(--sans);
+  white-space: nowrap;
+}
+.gift-stage__skip:not([hidden]) { color: var(--wine); background: var(--paper); }
+.gift-stage__hint { text-align: center; }
+@media (orientation: landscape) and (max-height: 480px) {
+  .gate__content { transform: none; }
+}
