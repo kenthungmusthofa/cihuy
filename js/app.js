@@ -17,7 +17,13 @@
   $('#signatureName').textContent = me + '.';
   $('#giftBoxLetter').textContent = 'Untuk ' + romanticAddress.toLowerCase() + ' ♡';
   $('#finalTitle').textContent = safe(cfg.finalTitle, 'Untuk kamu, yang istimewa.');
-  $('#finalMessage').textContent = safe(cfg.finalMessage, 'Selamat ulang tahun! Semoga semua hal baik selalu menyertaimu.');
+  const finalLetter = safe(cfg.finalMessage, 'Selamat ulang tahun! Semoga semua hal baik selalu menyertaimu.');
+  const paragraphs = finalLetter.split(/\r?\n\s*\r?\n/).map(text => {
+    const paragraph = document.createElement('p');
+    paragraph.textContent = text;
+    return paragraph;
+  });
+  $('#finalMessage').replaceChildren(...paragraphs);
   $('#secretText').textContent = safe(cfg.secretMessage, 'Semoga hal-hal baik selalu menjaga cerita kita.');
   $('#firstTalkText').textContent = safe(cfg.firstTalkText, $('#firstTalkText').textContent);
   $('#relationshipText').textContent = safe(cfg.relationshipText, $('#relationshipText').textContent);

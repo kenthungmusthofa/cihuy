@@ -556,6 +556,15 @@ h1 em, h2 em, h3 em, .hero__headline i, .letter-card__name em,
   line-height: 1.75;
   text-align: start;
 }
+.gift-reveal__message > p {
+  margin: 0;
+  line-height: inherit;
+  text-align: start;
+}
+.gift-reveal__message > p + p { margin-block-start: 1em; }
+.gift-reveal__message > p:first-child + p,
+.gift-reveal__message > p + p:last-child { margin-block-start: 1.5em; }
+
 .prayer__sub, .gate__hint, .gift-stage__hint, .key-discovery__hint,
 .candle-result, .polaroid__caption, .polaroid-scene__center {
   font-family: var(--sans);

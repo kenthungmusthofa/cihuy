@@ -63,11 +63,22 @@
   }
   $('#nameIntroSkip').addEventListener('click', endIntro);
   introContinue.addEventListener('click', endIntro);
-  // Progress HUD only after opening the physical letter.
+  const memoryKey = $('#keyMemory');
+  const keyObserver = 'IntersectionObserver' in window
+    ? new IntersectionObserver(entries => {
+        if (entries.some(entry => entry.isIntersecting && entry.intersectionRatio >= 0.35)) showKeyProgress();
+      }, {threshold: 0.35})
+    : null;
+  function showKeyProgress(){
+    if ($('main').inert) return;
+    hud.hidden = false;
+    keyObserver?.disconnect();
+  }
+  memoryKey.addEventListener('focus', showKeyProgress);
   document.addEventListener('gift:gate-opened',()=>{
     $('main').inert=false;
     $('#siteHeader').inert=false;
-    hud.hidden=false;
+    keyObserver?.observe(memoryKey);
     $('.brand').focus({preventScroll:true});
   });
   let panelOpener = toggle;
@@ -100,7 +111,7 @@
     const id=button.dataset.jumpKey;
     toSection(keyDefs.find(k=>k.id===id)?.jump || '#story');
   }));
-  $('#vaultShortcut').addEventListener('click',event=>{hud.hidden=false;setPanel(true,event.currentTarget);});
+  $('#vaultShortcut').addEventListener('click',event=>{showKeyProgress();setPanel(true,event.currentTarget);});
   $('#keyHudUnlock').addEventListener('click',()=>toSection('#vault'));
   const keySVG='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="15.6" cy="8" r="4.2"></circle><path d="M12.6 11.3 3 21v-4h3v-3h3l3.6-3.7"></path></svg>';
   // Use vector keys: no emoji-platform mismatch, crisp on Android.
@@ -131,6 +142,7 @@
     def.btn.addEventListener('click',()=>{
       if(collected.has(def.id))return;
       collected.add(def.id);
+      showKeyProgress();
       markCollected(def);
       updateProgress();
     });
@@ -160,6 +172,7 @@
   });
   function resetV5(){
     clearTimeout(unlockTimer);isUnlocking=false;
+    keyObserver?.disconnect();
     collected.clear();setPanel(false);hud.hidden=true;
     keyDefs.forEach((def,i)=>{
       def.spot.hidden = i!==0;
